@@ -2,23 +2,23 @@
 
 namespace App\Controller;
 
+use App\ExternalApi\GoogleApi;
 use App\Model\NullWeather;
 use DateTime;
 use Exception;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class WeatherController extends Controller
+class WeatherController extends AbstractController
 {
     /**
-     *  #https://symfony.com/doc/current/best_practices/controllers.html#fetching-services
      * @param           $day
+     * @param GoogleApi $googleApiService
      * @return Response
      */
-    public function index($day): Response
+    public function index($day, GoogleApi $googleApiService): Response
     {
         try {
-            $googleApiService = $this->get('app.weather.api_service');
             $weather = $googleApiService->getDay(new DateTime($day));
         } catch (Exception $exp) {
             $weather = new NullWeather();
