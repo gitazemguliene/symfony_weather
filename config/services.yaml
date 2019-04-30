@@ -27,9 +27,6 @@ services:
     # please note that last definitions always *replace* previous ones
 
 #custom logic...
-    App\Controller\WeatherController:
-        arguments: ['@app.external_api.google_api']
-
     app.external_api.google_api:
         class: App\ExternalApi\GoogleApi
 

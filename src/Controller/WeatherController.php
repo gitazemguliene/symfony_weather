@@ -2,25 +2,12 @@
 
 namespace App\Controller;
 
-use App\ExternalApi\GoogleApi;
 use App\Model\NullWeather;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class WeatherController extends AbstractController
+class WeatherController extends Controller
 {
-    /** @var GoogleApi */
-    private $googleApi;
-
-    /**
-     * WeatherController constructor.
-     * @param GoogleApi $googleApi
-     */
-    public function __construct(GoogleApi $googleApi)
-    {
-        $this->googleApi = $googleApi;
-    }
-
     /**
      * @param           $day
      * @return Response
@@ -28,7 +15,8 @@ class WeatherController extends AbstractController
     public function index($day): Response
     {
         try {
-            $weather = $this->googleApi->getDay(new \DateTime($day));
+            $googleApi = $this->get('app.external_api.google_api');
+            $weather = $googleApi->getDay(new \DateTime($day));
         } catch (\Exception $exp) {
             $weather = new NullWeather();
         }
