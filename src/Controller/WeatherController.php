@@ -10,14 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 class WeatherController extends AbstractController
 {
     /**
-     * @param $day
+     * @param           $day
+     * @param GoogleApi $googleApi
      * @return Response
      */
-    public function index($day): Response
+    public function index($day, GoogleApi $googleApi): Response
     {
         try {
-            $service = new GoogleApi();
-            $weather = $service->getDay(new \DateTime($day));
+            $weather = $googleApi->getDay(new \DateTime($day));
         } catch (\Exception $exp) {
             $weather = new NullWeather();
         }
