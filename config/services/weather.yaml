@@ -11,7 +11,7 @@ services:
             $defaultLifetime: '%weather_cache_default_life_time%'
             $directory: '%weather_cache_directory%'
 
-    app.weahter.loader_service:
+    app.weather.loader_service:
         class: App\Weather\LoaderService
         arguments:
             $weatherService: '@app.external_api.google_api'
