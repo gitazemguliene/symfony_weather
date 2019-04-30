@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\ExternalApi\GoogleApi;
 use App\Model\NullWeather;
+use DateTime;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use  Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 class WeatherController extends AbstractController
 {
@@ -17,8 +19,8 @@ class WeatherController extends AbstractController
     {
         try {
             $fromGoogle = new GoogleApi();
-            $weather = $fromGoogle->getDay(new \DateTime($day));
-        } catch (\Exception $exp) {
+            $weather = $fromGoogle->getDay(new DateTime($day));
+        } catch (Exception $exp) {
             $weather = new NullWeather();
         }
 
