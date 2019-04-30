@@ -4,6 +4,13 @@
 
 {% block body %}
 
+    {% if app.request.query.get('day') is not empty %}
+        Parametras {{ app.request.query.get('day') }}
+    {% endif %}
+
+    <br>
+    <br>
+
     <ul>
         <li>Šiandien: {{ weatherData.date }}</li>
         <li>Temperatūra dieną: {{ weatherData.dayTemp }}</li>
