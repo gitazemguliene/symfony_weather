@@ -5,21 +5,19 @@ namespace App\Controller;
 use App\ExternalApi\GoogleApi;
 use App\Model\NullWeather;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use  Symfony\Component\HttpFoundation\Response;
 
 class WeatherController extends AbstractController
 {
     /**
-     * @param Request $request
+     * @param $day
      * @return Response
-     * @throws \Exception
      */
-    public function index(Request $request): Response
+    public function index($day): Response
     {
         try {
             $fromGoogle = new GoogleApi();
-            $weather = $fromGoogle->getDay(new \DateTime($request->query->get('day')));
+            $weather = $fromGoogle->getDay(new \DateTime($day));
         } catch (\Exception $exp) {
             $weather = new NullWeather();
         }
