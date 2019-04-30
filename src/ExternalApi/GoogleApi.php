@@ -24,7 +24,7 @@ class GoogleApi
      * @return Weather
      * @throws \Exception
      */
-    private function load(Weather $before)
+    private function load(Weather $before): Weather
     {
         $now = new Weather();
         $base = $before->getDayTemp();
