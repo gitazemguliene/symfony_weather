@@ -19,7 +19,6 @@ class WeatherController extends AbstractController
         }
 
         return $this->render('weather/index.html.twig', [
-            'controller_name' => 'WeatherController',
             'weatherData'     => [
                 'date'      => $weather->getDate()->format('Y-m-d'),
                 'dayTemp'   => $weather->getDayTemp(),
