@@ -5,7 +5,7 @@ namespace App\ExternalApi;
 use App\Model\NullWeather;
 use App\Model\Weather;
 
-class YahooApi
+class YahooApi implements WeatherApiInterface
 {
     public const PROVIDER_NAME = 'Yahoo';
 
