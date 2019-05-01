@@ -8,6 +8,7 @@ use DateTime;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Psr\SimpleCache\InvalidArgumentException;
 
 class WeatherController extends AbstractController
 {
@@ -15,6 +16,7 @@ class WeatherController extends AbstractController
      * @param               $day
      * @param LoaderService $weatherLoader
      * @return Response
+     * @throws InvalidArgumentException
      */
     public function index($day, LoaderService $weatherLoader): Response
     {
@@ -29,7 +31,8 @@ class WeatherController extends AbstractController
                 'date'      => $weather->getDate()->format('Y-m-d'),
                 'dayTemp'   => $weather->getDayTemp(),
                 'nightTemp' => $weather->getNightTemp(),
-                'sky'       => $weather->getSky()
+                'sky'       => $weather->getSky(),
+                'provider'  => $weather->getProviderName()
             ],
         ]);
     }
