@@ -4,7 +4,7 @@ namespace App\Weather;
 
 use App\ExternalApi\WeatherApiInterface;
 
-class WeatherProviderManager
+class ProviderManager
 {
     /** @var WeatherApiInterface[] */
     private $weatherProvider;

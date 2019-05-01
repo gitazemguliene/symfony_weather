@@ -2,7 +2,6 @@
 
 namespace App\Weather;
 
-use App\ExternalApi\GoogleApi;
 use App\Model\Weather;
 use DateTime;
 use Exception;
@@ -11,20 +10,20 @@ use Symfony\Component\Cache\Simple\FilesystemCache;
 
 class LoaderService
 {
-    /** @var GoogleApi */
-    private $weatherService;
-
     /** @var FilesystemCache */
     private $cacheService;
 
+    /** @var ProviderManager */
+    private $providerManager;
+
     /**
      * LoaderService constructor.
-     * @param GoogleApi       $weatherService
+     * @param ProviderManager $providerManager
      * @param FilesystemCache $cacheService
      */
-    public function __construct(GoogleApi $weatherService, FilesystemCache $cacheService)
+    public function __construct(ProviderManager $providerManager, FilesystemCache $cacheService)
     {
-        $this->weatherService = $weatherService;
+        $this->providerManager = $providerManager;
         $this->cacheService = $cacheService;
     }
 
@@ -42,11 +41,12 @@ class LoaderService
             $weather = $this->cacheService->get($cacheKey);
         } else {
             echo 'save to cache  <br> ';
-            $weather = $this->weatherService->getDay($day);
+            $weather = $this->providerManager->getWeatherProvider($day)->getDay($day);
             $this->cacheService->set($cacheKey, $weather);
         }
         return $weather;
     }
+
     /**
      * @param DateTime $day
      * @return string
