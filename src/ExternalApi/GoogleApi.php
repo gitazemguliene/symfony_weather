@@ -5,9 +5,8 @@ namespace App\ExternalApi;
 use App\Model\NullWeather;
 use App\Model\Weather;
 
-class GoogleApi
+class GoogleApi implements WeatherApiInterface
 {
-
     public const PROVIDER_NAME = 'Google';
     /**
      * @param \DateTime $day
