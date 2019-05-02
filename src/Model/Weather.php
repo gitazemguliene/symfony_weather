@@ -26,6 +26,25 @@ class Weather
      */
     protected $date;
 
+    /** @var string */
+    protected $providerName;
+
+    /**
+     * @return string
+     */
+    public function getProviderName(): string
+    {
+        return $this->providerName;
+    }
+
+    /**
+     * @param string $providerName
+     */
+    public function setProviderName($providerName): void
+    {
+        $this->providerName = $providerName;
+    }
+
     /**
      * @return array
      */
