@@ -11,9 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 class WeatherController extends AbstractController
 {
     /**
-     * @param           $day
+     * @param               $day
      * @param LoaderService $loaderService
      * @return Response
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function index($day, LoaderService $loaderService): Response
     {
@@ -28,7 +29,8 @@ class WeatherController extends AbstractController
                 'date'      => $weather->getDate()->format('Y-m-d'),
                 'dayTemp'   => $weather->getDayTemp(),
                 'nightTemp' => $weather->getNightTemp(),
-                'sky'       => $weather->getSky()
+                'sky'       => $weather->getSky(),
+                'provider'  => $weather->getProviderName()
             ]
         ]);
     }
