@@ -8,5 +8,5 @@ services:
         class: Symfony\Component\Cache\Simple\FilesystemCache
         arguments:
             $namespace: '%weather_cache_namespace%'
-            $defaultLifetime: 'weather_cache_default_life_time'
-            $directory: 'weather_cache_directory'
+            $defaultLifetime: '%weather_cache_default_life_time%'
+            $directory: '%weather_cache_directory%'
