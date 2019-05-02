@@ -32,9 +32,32 @@ class LoaderService
      * @param DateTime $day
      * @return Weather
      * @throws Exception
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function loadWeatherByDay(DateTime $day): Weather
     {
-        return $this->weatherService->getDay($day);
+        $cacheKey = $this->getCacheKey($day);
+
+        if ($this->cacheService->has($cacheKey)) {
+            echo 'From cache <br>';
+            $weather = $this->cacheService->get($cacheKey);
+        } else {
+            echo 'load from API and save to cache <br>';
+            $weather = $this->weatherService->getDay($day);
+            $this->cacheService->set($cacheKey, $weather);
+        }
+
+        return $weather;
     }
+
+    /**
+     * @param DateTime $day
+     * @return string
+     */
+    private function getCacheKey(DateTime $day): string
+    {
+        return $day->format('Y-m-d');
+    }
+
+
 }
