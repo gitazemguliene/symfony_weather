@@ -6,7 +6,7 @@ use App\Model\Weather;
 
 class GoogleApi extends AbstractWeatherService implements WeatherApiInterface
 {
-    public const PROVIDER_NAME = 'Google';
+    private const PROVIDER_NAME = 'Google';
 
     /**
      * @param \DateTime $day

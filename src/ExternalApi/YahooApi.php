@@ -6,7 +6,7 @@ use App\Model\Weather;
 
 class YahooApi extends AbstractWeatherService implements WeatherApiInterface
 {
-    public const PROVIDER_NAME = 'Yahoo';
+    private const PROVIDER_NAME = 'Yahoo';
 
     /**
      * @param \DateTime $day
