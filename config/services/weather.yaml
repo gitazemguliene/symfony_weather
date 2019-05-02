@@ -17,3 +17,8 @@ services:
             $weatherService: '@app.external_api.google_api'
             $cacheService: '@app.weather.file_system_cache'
 
+    app.weather.weather_provider_manager:
+        class: App\Weather\WeatherProviderManager
+        calls:
+            - [addWeatherProvider, ['yahoo', '@app.external_api.yahoo_api']]
+            - [addWeatherProvider, ['google', '@app.external_api.google_api']]
