@@ -14,7 +14,7 @@ services:
     app.weather.loader_service:
         class: App\Weather\LoaderService
         arguments:
-            $weatherService: '@app.external_api.google_api'
+            $providerManager: '@app.weather.provider_manager'
             $cacheService: '@app.weather.file_system_cache'
 
     app.weather.provider_manager:
