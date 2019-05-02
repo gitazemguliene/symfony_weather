@@ -5,10 +5,10 @@ namespace App\ExternalApi;
 use App\Model\NullWeather;
 use App\Model\Weather;
 
-class GoogleApi
+class YahooApi
 {
+    public const PROVIDER_NAME = 'Yahoo';
 
-    public const PROVIDER_NAME = 'Google';
     /**
      * @param \DateTime $day
      * @return Weather

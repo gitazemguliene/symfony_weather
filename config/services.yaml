@@ -1,4 +1,5 @@
 imports:
+    - { resource: services/external_api/yahoo_api.yaml}
     - { resource: services/external_api/google_api.yaml}
     - { resource: services/weather.yaml}
 
